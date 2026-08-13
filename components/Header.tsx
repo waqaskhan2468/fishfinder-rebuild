@@ -5,7 +5,7 @@ import MobileNav from "@/components/MobileNav";
 
 export default function Header() {
   return (
-    <header className="relative bg-brand-black">
+    <header className="sticky top-0 z-50 bg-brand-black">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
         <Link href="/" className="flex shrink-0 items-center gap-3">
           <Image

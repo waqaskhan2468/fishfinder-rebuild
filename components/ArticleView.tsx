@@ -25,7 +25,7 @@ export default function ArticleView({
 
         <HeroImage src={frontmatter.image} alt={frontmatter.title} />
 
-        <div className="lg:grid lg:grid-cols-[1fr_300px] lg:items-start lg:gap-12">
+        <div className="lg:grid lg:grid-cols-[1fr_300px] lg:gap-12">
           <div className="max-w-3xl">
             <div className="prose-article">
               <MDXRemote

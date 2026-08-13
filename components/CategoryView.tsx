@@ -20,7 +20,7 @@ export default function CategoryView({
 
   return (
     <div className="bg-surface">
-      <div className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14 lg:grid lg:grid-cols-[1fr_300px] lg:items-start lg:gap-12">
+      <div className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14 lg:grid lg:grid-cols-[1fr_300px] lg:gap-12">
         <div>
           <h1
             className="mb-3 text-3xl leading-tight md:text-4xl"
