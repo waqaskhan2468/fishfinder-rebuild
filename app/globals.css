@@ -1,0 +1,260 @@
+@import "tailwindcss";
+
+:root {
+  --color-ink: #2d3748; /* body copy */
+  --color-ink-muted: #4a5568;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f7fafc;
+  --color-surface-muted: #edf2f7;
+  --color-heading-1: #023738;
+  --color-heading-2: #08373a;
+  --color-heading-3: #04555a;
+  --color-heading-4: #032f35;
+  --color-brand-black: #000000;
+  --color-brand-black-2: #000204;
+  --color-nav-dropdown: #1a202c;
+  --color-nav-dropdown-hover: #2d3748;
+  --color-accent: #ff7700;
+  --color-accent-hover: #e86900;
+  --color-highlight: #00faff;
+  --color-link: #2b6cb0;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-surface: var(--color-surface);
+  --color-surface-alt: var(--color-surface-alt);
+  --color-surface-muted: var(--color-surface-muted);
+  --color-heading-1: var(--color-heading-1);
+  --color-heading-2: var(--color-heading-2);
+  --color-heading-3: var(--color-heading-3);
+  --color-heading-4: var(--color-heading-4);
+  --color-brand-black: var(--color-brand-black);
+  --color-brand-black-2: var(--color-brand-black-2);
+  --color-nav-dropdown: var(--color-nav-dropdown);
+  --color-nav-dropdown-hover: var(--color-nav-dropdown-hover);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-highlight: var(--color-highlight);
+  --color-link: var(--color-link);
+  --font-heading: Georgia, "Times New Roman", serif;
+  --font-heading-alt: var(--font-alike-angular), Georgia, "Times New Roman", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell,
+    "Helvetica Neue", sans-serif;
+}
+
+body {
+  background: var(--color-surface-alt);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.prose-article :where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-heading-alt);
+  font-weight: 400;
+}
+
+.prose-article h1 {
+  font-family: var(--font-heading);
+  color: var(--color-heading-1);
+}
+
+.prose-article h2 {
+  color: var(--color-heading-2);
+  font-size: 1.75rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose-article h3 {
+  color: var(--color-heading-3);
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-article h4 {
+  font-family: var(--font-heading);
+  color: var(--color-heading-4);
+  font-size: 1.375rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-article p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.prose-article ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.prose-article ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.prose-article li {
+  margin: 0.35rem 0;
+}
+
+.prose-article strong {
+  color: var(--color-heading-4);
+}
+
+.prose-article img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1.5rem auto;
+  display: block;
+}
+
+/* Article hero/thumbnail image, shown full-width above the sidebar grid so
+   it isn't squeezed by the sidebar column. HeroImage computes the capped
+   intrinsic width/height server-side (max 896x512, never upscaled); this
+   just centers it and lets it shrink further on narrow viewports. */
+.hero-image-frame img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin: 0 auto;
+  display: block;
+}
+
+.prose-article td img {
+  width: 96px;
+  margin: 0;
+}
+
+/* Amazon CTA buttons (rendered by MdxAnchor for amzn.to links) */
+.amazon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-accent);
+  color: #000 !important;
+  font-weight: 700;
+  border-radius: 9999px;
+  padding: 0.9rem 2rem;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease;
+  line-height: 1.2;
+}
+
+.amazon-button:hover {
+  background: var(--color-accent-hover);
+}
+
+.prose-article p:has(> a.amazon-button:only-child) {
+  margin: 1.5rem 0;
+}
+
+.prose-article p > a.amazon-button:only-child {
+  display: flex;
+  width: 100%;
+}
+
+.prose-article td a.amazon-button {
+  padding: 0.45rem 1rem;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.amazon-button-icon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+}
+
+.prose-article td .amazon-button-icon {
+  width: 0.95em;
+  height: 0.95em;
+}
+
+/* Pros / Cons two-column box (from extract-content.mjs prosConsGrid) */
+.pros-cons-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+@media (min-width: 640px) {
+  .pros-cons-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pros-box,
+.cons-box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-muted);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.pros-box h4,
+.cons-box h4 {
+  margin: 0;
+  padding: 0.7rem 1.1rem;
+  font-size: 1.05rem;
+  color: #14213a;
+  font-family: var(--font-heading);
+}
+
+.pros-box h4 {
+  background: #81b7f0;
+}
+
+.cons-box h4 {
+  background: #f4a2a2;
+}
+
+.pros-cons-grid ul {
+  margin: 0;
+  padding: 0.9rem 1.1rem 1.1rem 2.1rem;
+}
+
+.pros-cons-grid li {
+  margin: 0.3rem 0;
+}
+
+.prose-article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.prose-article th,
+.prose-article td {
+  border: 1px solid var(--color-surface-muted);
+  padding: 0.75rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.prose-article th {
+  background: var(--color-surface-muted);
+  font-family: var(--font-heading-alt);
+}
+
+.prose-article a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose-article a:hover {
+  color: var(--color-accent);
+}
