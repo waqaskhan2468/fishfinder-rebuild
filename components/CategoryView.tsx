@@ -1,15 +1,18 @@
 import PostCard from "@/components/PostCard";
 import Sidebar from "@/components/Sidebar";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { getArticle, type ArticleFrontmatter } from "@/lib/content";
 
 export default function CategoryView({
   title,
   description,
   postSlugs,
+  categoryLabel,
 }: {
   title: string;
   description: string;
   postSlugs: string[];
+  categoryLabel?: string;
 }) {
   const posts = postSlugs
     .map((slug) => {
@@ -22,6 +25,12 @@ export default function CategoryView({
     <div className="bg-surface">
       <div className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14 lg:grid lg:grid-cols-[1fr_300px] lg:gap-12">
         <div>
+          <Breadcrumbs
+            crumbs={[
+              { label: "Home", href: "/" },
+              { label: categoryLabel ?? title, href: null },
+            ]}
+          />
           <h1
             className="mb-3 text-3xl leading-tight md:text-4xl"
             style={{ fontFamily: "var(--font-heading)", color: "var(--color-heading-1)" }}

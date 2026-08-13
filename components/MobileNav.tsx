@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { NAV_LINKS } from "@/lib/nav";
+import type { NavItem } from "@/lib/navigation";
 
-export default function MobileNav() {
+export default function MobileNav({ links }: { links: NavItem[] }) {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
 
@@ -33,7 +33,7 @@ export default function MobileNav() {
           className="absolute inset-x-0 top-full z-50 max-h-[calc(100vh-4rem)] overflow-y-auto bg-brand-black-2 shadow-lg"
         >
           <ul className="flex flex-col divide-y divide-white/10">
-            {NAV_LINKS.map((link) => (
+            {links.map((link) => (
               <li key={link.href}>
                 <div className="flex items-stretch">
                   <Link

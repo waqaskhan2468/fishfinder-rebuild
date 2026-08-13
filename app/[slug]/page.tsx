@@ -35,9 +35,12 @@ export default async function ArticlePage({ params }: { params: Params }) {
         title={article.frontmatter.title}
         description={article.frontmatter.description}
         postSlugs={CATEGORIES[slug].posts}
+        categoryLabel={CATEGORIES[slug].label}
       />
     );
   }
 
-  return <ArticleView frontmatter={article.frontmatter} content={article.content} />;
+  return (
+    <ArticleView frontmatter={article.frontmatter} content={article.content} slug={slug} />
+  );
 }

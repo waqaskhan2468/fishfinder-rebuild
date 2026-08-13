@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { NAV_LINKS } from "@/lib/nav";
+import { getNavigation } from "@/lib/navigation";
 import MobileNav from "@/components/MobileNav";
 
 export default function Header() {
+  const navLinks = getNavigation();
+
   return (
     <header className="sticky top-0 z-50 bg-brand-black">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
@@ -20,7 +22,7 @@ export default function Header() {
 
         <nav className="hidden lg:block" aria-label="Primary Navigation">
           <ul className="flex items-center gap-1 text-sm">
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <li key={link.href} className="group relative">
                 <Link
                   href={link.href}
@@ -39,9 +41,7 @@ export default function Header() {
                 </Link>
 
                 {link.children && (
-                  <ul
-                    className="invisible absolute left-0 top-full z-50 min-w-[200px] translate-y-1 bg-nav-dropdown opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
-                  >
+                  <ul className="invisible absolute left-0 top-full z-50 min-w-[240px] translate-y-1 bg-nav-dropdown opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
                     {link.children.map((child) => (
                       <li key={child.href} className="border-b border-white/10 last:border-b-0">
                         <Link
@@ -59,7 +59,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <MobileNav />
+        <MobileNav links={navLinks} />
       </div>
     </header>
   );
