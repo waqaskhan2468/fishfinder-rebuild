@@ -9,6 +9,7 @@ export const CATEGORIES: Record<string, Category> = {
   brands: {
     slug: "brands",
     posts: [
+      "livescope-vs-activetarget-vs-mega-live",
       "garmin-fish-finders",
       "lowrance-fish-finders",
       "best-humminbird-fish-finder",

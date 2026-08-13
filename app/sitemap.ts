@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getPostSlugs, getPageSlugs } from "@/lib/content";
 
-const BASE_URL = "https://bestfishfinderstoday.com";
+const BASE_URL = "https://www.bestfishfinderstoday.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = [

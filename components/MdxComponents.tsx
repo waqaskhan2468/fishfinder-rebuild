@@ -3,6 +3,7 @@ import path from "node:path";
 import Image from "next/image";
 import Link from "next/link";
 import { imageSize } from "image-size";
+import { ProductCta, ProductTable, ProductCard } from "@/components/ProductBlocks";
 import type { AnchorHTMLAttributes, ImgHTMLAttributes } from "react";
 
 const dimensionCache = new Map<string, { width: number; height: number } | null>();
@@ -114,4 +115,8 @@ function MdxImg({ src, alt = "", width, height }: ImgHTMLAttributes<HTMLImageEle
 export const mdxComponents = {
   a: MdxAnchor,
   img: MdxImg,
+  // Custom tags authored in .mdx, resolved from the product registry.
+  "product-cta": ProductCta,
+  "product-table": ProductTable,
+  "product-card": ProductCard,
 };

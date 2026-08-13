@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://bestfishfinderstoday.com/sitemap.xml",
+    sitemap: "https://www.bestfishfinderstoday.com/sitemap.xml",
   };
 }

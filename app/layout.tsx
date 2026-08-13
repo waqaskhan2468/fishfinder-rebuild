@@ -11,7 +11,9 @@ const alikeAngular = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bestfishfinderstoday.com"),
+  // Must match the host Vercel actually serves (apex 308-redirects to www),
+  // otherwise every canonical URL points at a redirect.
+  metadataBase: new URL("https://www.bestfishfinderstoday.com"),
   title: "Best Fish Finders Today",
   robots: { index: true, follow: true },
   openGraph: { siteName: "Best Fish Finders Today", type: "website" },
