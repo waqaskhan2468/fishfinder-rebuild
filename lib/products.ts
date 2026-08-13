@@ -39,25 +39,28 @@ export function amazonUrl(product: Product): string {
 export const PRODUCTS = {
   // ---- Live sonar / forward-facing (high ticket) ----
   "garmin-livescope-plus": {
-    name: "Garmin LiveScope Plus LVS34 System",
+    name: "Garmin LiveScope Plus System with GLS 10 and LVS34 Transducer",
     brand: "Garmin",
-    search: "Garmin LiveScope Plus LVS34 system",
+    asin: "B09SGT9T88",
     priceBand: "$1,300–1,500",
     blurb: "The category benchmark. Sharpest image, biggest ecosystem.",
   },
   "lowrance-activetarget-2": {
-    name: "Lowrance ActiveTarget 2 Live Sonar",
+    name: "Lowrance ActiveTarget 2 Live Sonar Transducer",
     brand: "Lowrance",
-    search: "Lowrance ActiveTarget 2 live sonar",
+    asin: "B0GMXM289Z",
     priceBand: "$1,300–1,500",
     blurb: "Highest stated resolution; strong pick if you already run Lowrance.",
   },
   "humminbird-mega-live-2": {
-    name: "Humminbird MEGA Live 2 Imaging",
+    name: "Humminbird MEGA Live 2 Forward-Facing Sonar Transducer",
     brand: "Humminbird",
-    search: "Humminbird MEGA Live 2 imaging",
+    asin: "B0DMM2NNSS",
     priceBand: "$1,300–1,600",
-    blurb: "Best fit for existing Humminbird owners on APEX/SOLIX/HELIX.",
+    // Compatibility is deliberately in the blurb: MEGA Live 2 does NOT work
+    // with HELIX or older SOLIX, which is the single most expensive mistake
+    // a Humminbird owner can make here.
+    blurb: "For XPLORE, APEX and SOLIX G3 only — not HELIX or older SOLIX.",
   },
 
   // ---- Chartplotter combos / mid-to-high ticket ----

@@ -392,3 +392,25 @@ body {
   align-self: flex-start;
   margin-top: 0.35rem;
 }
+
+/* Blockquotes — used for callouts and buyer warnings inside articles */
+.prose-article blockquote {
+  margin: 1.75rem 0;
+  padding: 1.1rem 1.35rem;
+  border-left: 4px solid var(--color-accent);
+  background: var(--color-surface-alt);
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--color-ink);
+}
+
+.prose-article blockquote > :first-child {
+  margin-top: 0;
+}
+
+.prose-article blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.prose-article blockquote p {
+  margin: 0.6rem 0;
+}
