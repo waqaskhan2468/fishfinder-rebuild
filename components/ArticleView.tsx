@@ -6,22 +6,35 @@ import HeroImage from "@/components/HeroImage";
 import Sidebar from "@/components/Sidebar";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RelatedPosts from "@/components/RelatedPosts";
+import JsonLd from "@/components/JsonLd";
 import { categoryForPost } from "@/lib/categories";
+import { extractFaq } from "@/lib/faq";
+import { articleSchema, faqSchema } from "@/lib/schema";
 import type { ArticleFrontmatter } from "@/lib/content";
 
 export default function ArticleView({
   frontmatter,
   content,
   slug,
+  /** Editorial posts get Article schema; static pages (privacy, contact) and
+   *  the homepage should not be described as Articles. */
+  isPost = false,
 }: {
   frontmatter: ArticleFrontmatter;
   content: string;
   slug?: string;
+  isPost?: boolean;
 }) {
   const category = slug ? categoryForPost(slug) : null;
+  // Only emit FAQPage markup when the article genuinely has an FAQ section —
+  // fabricated or empty FAQ schema is a structured-data violation.
+  const faq = extractFaq(content);
 
   return (
     <article className="bg-surface">
+      {isPost && slug && <JsonLd data={articleSchema(frontmatter, slug)} />}
+      {faq.length > 0 && <JsonLd data={faqSchema(faq)} />}
+
       <div className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14">
         <Breadcrumbs
           crumbs={[

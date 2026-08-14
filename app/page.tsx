@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { getHome } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
+import { websiteSchema } from "@/lib/schema";
 import ArticleView from "@/components/ArticleView";
+import JsonLd from "@/components/JsonLd";
 
 export function generateMetadata(): Metadata {
   const { frontmatter } = getHome();
@@ -15,5 +17,11 @@ export function generateMetadata(): Metadata {
 
 export default function HomePage() {
   const { frontmatter, content } = getHome();
-  return <ArticleView frontmatter={frontmatter} content={content} />;
+  return (
+    <>
+      {/* The homepage is the site entity, not an Article. */}
+      <JsonLd data={websiteSchema()} />
+      <ArticleView frontmatter={frontmatter} content={content} />
+    </>
+  );
 }

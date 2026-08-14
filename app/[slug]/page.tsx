@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getArticle, getPostSlugs, getPageSlugs } from "@/lib/content";
+import { getArticle, getPost, getPostSlugs, getPageSlugs } from "@/lib/content";
 import { CATEGORIES, isCategorySlug } from "@/lib/categories";
 import { buildMetadata } from "@/lib/seo";
 import ArticleView from "@/components/ArticleView";
@@ -41,6 +41,11 @@ export default async function ArticlePage({ params }: { params: Params }) {
   }
 
   return (
-    <ArticleView frontmatter={article.frontmatter} content={article.content} slug={slug} />
+    <ArticleView
+      frontmatter={article.frontmatter}
+      content={article.content}
+      slug={slug}
+      isPost={getPost(slug) !== null}
+    />
   );
 }
