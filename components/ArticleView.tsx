@@ -1,6 +1,7 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import rehypeWrapTables from "@/lib/rehype-wrap-tables";
 import { mdxComponents } from "@/components/MdxComponents";
 import HeroImage from "@/components/HeroImage";
 import Sidebar from "@/components/Sidebar";
@@ -36,13 +37,17 @@ export default function ArticleView({
       {faq.length > 0 && <JsonLd data={faqSchema(faq)} />}
 
       <div className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14">
-        <Breadcrumbs
-          crumbs={[
-            { label: "Home", href: "/" },
-            ...(category ? [{ label: category.label, href: `/${category.slug}/` }] : []),
-            { label: frontmatter.title, href: null },
-          ]}
-        />
+        {/* No breadcrumbs on the homepage — it is the root, so a trail
+            reading just "Home" adds nothing. */}
+        {slug && (
+          <Breadcrumbs
+            crumbs={[
+              { label: "Home", href: "/" },
+              ...(category ? [{ label: category.label, href: `/${category.slug}/` }] : []),
+              { label: frontmatter.title, href: null },
+            ]}
+          />
+        )}
 
         <h1
           className="mb-6 text-3xl leading-tight md:text-4xl"
@@ -63,7 +68,7 @@ export default function ArticleView({
                   mdxOptions: {
                     format: "md",
                     remarkPlugins: [remarkGfm],
-                    rehypePlugins: [rehypeRaw],
+                    rehypePlugins: [rehypeRaw, rehypeWrapTables],
                   },
                 }}
               />

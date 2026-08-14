@@ -131,8 +131,12 @@ body {
   display: block;
 }
 
+/* Uniform thumbnail box — source images range from tall handhelds to wide
+   chartplotters, so a fixed width alone leaves rows wildly uneven. */
 .prose-article td img {
-  width: 96px;
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
   margin: 0;
 }
 
@@ -348,6 +352,7 @@ body {
   margin: 1.75rem 0;
 }
 
+.prose-article .product-card-img,
 .product-card-img {
   width: 180px;
   height: auto;
@@ -453,6 +458,8 @@ body {
   border: 1px solid var(--color-surface-muted);
   border-radius: 0.6rem;
   padding: 1rem;
+  /* equal-height cards regardless of blurb length */
+  height: 100%;
 }
 
 .top-pick-label {
@@ -467,12 +474,17 @@ body {
   border-radius: 9999px;
 }
 
+/* Fixed-height box with contain: product photos vary wildly in aspect ratio
+   (tall handhelds vs wide chartplotters), so without this the cards end up
+   different heights with large empty gaps. */
+.prose-article .top-pick-img,
 .top-pick-img {
   width: 100%;
-  max-width: 150px;
-  height: auto;
+  height: 150px;
+  object-fit: contain;
   margin: 0.35rem auto;
   border-radius: 0.4rem;
+  background: #fff;
 }
 
 .top-pick-name {
@@ -497,5 +509,62 @@ body {
   width: 100%;
   padding: 0.6rem 1rem;
   font-size: 0.85rem;
-  margin-top: 0.25rem;
+  margin-top: auto;
+}
+
+.top-picks-grid {
+  align-items: stretch;
+}
+
+/* ---- Responsive tables & buttons ---- */
+
+/* Wrapper injected by rehype-wrap-tables around every markdown table. */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
+}
+
+/* Give tables a usable minimum width so narrow screens scroll the table
+   rather than wrapping every cell to one word per line. */
+.table-scroll > table {
+  margin: 0;
+  min-width: 34rem;
+}
+
+/* Product-name column needs the most room; price/CTA columns the least. */
+.prose-article .table-scroll td:first-child,
+.prose-article .table-scroll th:first-child {
+  width: 92px;
+}
+
+.prose-article .table-scroll td:last-child {
+  white-space: nowrap;
+}
+
+/* Amazon buttons: allow long labels to wrap instead of overflowing on
+   narrow screens, and keep tap targets comfortable. */
+.amazon-button {
+  text-align: center;
+  min-height: 44px;
+}
+
+@media (max-width: 480px) {
+  .amazon-button {
+    padding: 0.8rem 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.25;
+  }
+
+  .product-cta {
+    padding: 1rem;
+  }
+
+  .product-cta .amazon-button {
+    width: 100%;
+  }
+
+  .top-picks {
+    padding: 1.1rem;
+  }
 }
