@@ -11,8 +11,8 @@ export default function NotFound() {
         404 – Page Not Found
       </h1>
       <p className="mt-4 text-ink-muted">
-        Looks like this catch got away. The page you're looking for has moved or no longer
-        exists, but there's plenty more to reel in.
+        Looks like this catch got away. The page you&apos;re looking for has moved or no longer
+        exists, but there&apos;s plenty more to reel in.
       </p>
       <Link
         href="/"

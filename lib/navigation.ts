@@ -46,6 +46,14 @@ export function getNavigation(): NavItem[] {
     });
   }
 
+  items.push({
+    label: "Tools",
+    href: "/tools/",
+    children: [
+      { label: "Compatibility Checker", href: "/fish-finder-compatibility-checker/" },
+      { label: "Which Should I Buy? Quiz", href: "/which-fish-finder-should-i-buy/" },
+    ],
+  });
   items.push({ label: "All Guides", href: "/guides/" });
   return items;
 }
