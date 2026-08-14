@@ -3,7 +3,7 @@ import path from "node:path";
 import Image from "next/image";
 import Link from "next/link";
 import { imageSize } from "image-size";
-import { ProductCta, ProductTable, ProductCard } from "@/components/ProductBlocks";
+import { ProductCta, ProductTable, ProductCard, TopPicks } from "@/components/ProductBlocks";
 import type { AnchorHTMLAttributes, ImgHTMLAttributes } from "react";
 
 const dimensionCache = new Map<string, { width: number; height: number } | null>();
@@ -119,4 +119,5 @@ export const mdxComponents = {
   "product-cta": ProductCta,
   "product-table": ProductTable,
   "product-card": ProductCard,
+  "top-picks": TopPicks,
 };

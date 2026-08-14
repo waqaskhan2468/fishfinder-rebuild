@@ -89,6 +89,56 @@ export function ProductTable(props: { "data-ids"?: string }) {
   );
 }
 
+/**
+ * "Top Picks" box for the top of a roundup.
+ *
+ * Most affiliate revenue comes from readers who never scroll past the first
+ * screen, so the buying decision needs to be answerable immediately rather
+ * than 3,000 words later.
+ *
+ * Authored as:
+ *   <top-picks data-picks="Best Overall|garmin-striker-vivid-7sv; Best Budget|garmin-striker-4">
+ *   </top-picks>
+ */
+export function TopPicks(props: { "data-picks"?: string }) {
+  const picks = (props["data-picks"] ?? "")
+    .split(";")
+    .map((entry) => {
+      const [label, key] = entry.split("|").map((s) => s.trim());
+      const product = getProduct(key ?? "");
+      return label && product ? { label, product } : null;
+    })
+    .filter((p): p is { label: string; product: Product } => p !== null);
+
+  if (picks.length === 0) return null;
+
+  return (
+    <div className="top-picks">
+      <h2 className="top-picks-title">Our Top Picks</h2>
+      <div className="top-picks-grid">
+        {picks.map(({ label, product }) => (
+          <div key={label} className="top-pick">
+            <span className="top-pick-label">{label}</span>
+            {product.image && (
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={220}
+                height={220}
+                className="top-pick-img"
+              />
+            )}
+            <strong className="top-pick-name">{product.name}</strong>
+            {product.blurb && <p className="top-pick-blurb">{product.blurb}</p>}
+            {product.priceBand && <span className="top-pick-price">{product.priceBand}</span>}
+            <BuyButton product={product} label="Check Price" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /** Image + summary card, for a product's own section within a review. */
 export function ProductCard(props: { "data-id"?: string }) {
   const product = getProduct(props["data-id"] ?? "");
