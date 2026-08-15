@@ -210,6 +210,28 @@ export const COMPATIBILITY: Record<string, Result[]> = {
 
 export const BRANDS: Brand[] = ["Garmin", "Lowrance", "Humminbird"];
 
+/**
+ * When someone's display can't run live sonar, the useful next answer is
+ * "what would work instead". Only lists displays we hold verified ASINs for —
+ * Humminbird's APEX/SOLIX G3/XPLORE aren't in the product registry yet, so
+ * that brand points at the guide rather than a product we can't link
+ * accurately.
+ */
+export const UPGRADE_PATHS: Record<Brand, { productKeys: string[]; note: string }> = {
+  Garmin: {
+    productKeys: ["garmin-echomap-uhd-73sv", "garmin-echomap-uhd-93sv"],
+    note: "To run LiveScope you need an ECHOMAP 'sv' model, an ECHOMAP Ultra, or a GPSMAP. These are the common upgrade picks:",
+  },
+  Lowrance: {
+    productKeys: ["lowrance-hds-live"],
+    note: "ActiveTarget 2 needs an HDS PRO, HDS LIVE, HDS Carbon or Elite FS display:",
+  },
+  Humminbird: {
+    productKeys: [],
+    note: "MEGA Live 2 requires an XPLORE, APEX or SOLIX G3. If you're on a HELIX, the original MEGA Live is the option that works with your unit.",
+  },
+};
+
 export function displaysForBrand(brand: Brand): Display[] {
   return DISPLAYS.filter((d) => d.brand === brand);
 }

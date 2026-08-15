@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import CompatibilityChecker from "@/components/CompatibilityChecker";
+import CompatibilityChecker, { type ToolProduct } from "@/components/CompatibilityChecker";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import Sidebar from "@/components/Sidebar";
 import { buildMetadata } from "@/lib/seo";
 import { faqSchema, SITE_URL, SITE_NAME } from "@/lib/schema";
-import { LIVE_SONAR } from "@/lib/compatibility";
-import { getProduct, amazonUrl } from "@/lib/products";
+import { PRODUCTS, getProduct, amazonUrl } from "@/lib/products";
 
 const TITLE = "Fish Finder Compatibility Checker: Which Live Sonar Works With Your Unit?";
 const DESCRIPTION =
@@ -50,18 +49,19 @@ const FAQ = [
 ];
 
 export default function CompatibilityCheckerPage() {
-  // Affiliate links are resolved server-side so the client component never
-  // needs the products registry or the affiliate tag.
-  const buyLinks: Record<string, { label: string; href: string }> = {};
-  for (const sonar of LIVE_SONAR) {
-    if (!sonar.productKey) continue;
-    const product = getProduct(sonar.productKey);
-    if (product) {
-      buyLinks[sonar.productKey] = {
-        label: `Check ${product.brand} price`,
-        href: amazonUrl(product),
-      };
-    }
+  // Resolved server-side so the client component never needs the products
+  // registry or the affiliate tag.
+  const products: Record<string, ToolProduct> = {};
+  for (const key of Object.keys(PRODUCTS)) {
+    const product = getProduct(key);
+    if (!product) continue;
+    products[key] = {
+      name: product.name,
+      brand: product.brand,
+      image: product.image,
+      priceBand: product.priceBand,
+      href: amazonUrl(product),
+    };
   }
 
   const toolSchema = {
@@ -105,7 +105,7 @@ export default function CompatibilityCheckerPage() {
 
         <div className="lg:grid lg:grid-cols-[1fr_300px] lg:gap-12">
           <div className="max-w-3xl">
-            <CompatibilityChecker buyLinks={buyLinks} />
+            <CompatibilityChecker products={products} />
 
             <div className="prose-article mt-12">
               <h2>Why compatibility is the first thing to check</h2>
