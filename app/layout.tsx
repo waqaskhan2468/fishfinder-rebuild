@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.bestfishfinderstoday.com"),
   title: "Best Fish Finders Today",
   robots: { index: true, follow: true },
+  verification: {
+    other: {
+      "impact-site-verification": "8139c905-7337-40f1-833b-51c574f6768d",
+    },
+  },
   openGraph: { siteName: "Best Fish Finders Today", type: "website" },
   twitter: { card: "summary_large_image" },
 };
