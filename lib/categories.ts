@@ -42,6 +42,7 @@ export const CATEGORIES: Record<string, Category> = {
       "how-to-read-a-garmin-fish-finder",
       "how-to-understand-the-images-on-the-fish-finder-screen",
       "portable-fish-finders-ultimate-buying-guide",
+      "best-fish-finder-under-200",
       "what-is-a-portable-fish-finder-why-should-you-buy-it-in-2021",
     ],
   },
